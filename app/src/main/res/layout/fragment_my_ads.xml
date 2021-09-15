@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.aelzohry.topsaleqatar.ui.more.my_ads.MyAdsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:background="@color/bg"
+        android:layout_height="match_parent"
+        tools:context=".ui.more.my_ads.MyAdsFragment">
+
+        <include layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/userView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatarImageView"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="@dimen/default_half_margin"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar"
+                        app:civ_border_color="@color/mainColor"
+                        app:civ_border_width="1dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/usernameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@{vm.name}"
+                            android:textSize="@dimen/more_text_size"
+                            android:textColor="@color/text_color_black"
+                            tools:text="Ahmed Elzohry" />
+
+                        <TextView
+                            android:id="@+id/mobileTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@{vm.phone}"
+                            android:textSize="@dimen/more_text_size"
+                            android:textColor="@color/text_color_black"
+                            android:textStyle="bold"
+                            tools:text="+201143011851" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/icon_circel_bg"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_email_white_24dp"
+                                app:civ_circle_background_color="@color/mainColor"/>
+<!--                                app:civ_fill_color="@color/mainColor" />-->
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/icon_circel_bg"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_phone_iphone_white_24dp"
+                                app:civ_circle_background_color="@color/mainColor"/>
+<!--                                app:civ_fill_color="@color/mainColor" />-->
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/hint" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{(v)->vm.onFollowingClickedListener(v)}"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_following"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{vm.followingCount}"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp"
+                            tools:text="434" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/followings"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{(v)->vm.onFollowerClickedListener(v)}"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_followers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{vm.followersCount}"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp"
+                            tools:text="434" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/followers"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hint" />
+
+                <TextView
+                    android:id="@+id/bioTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:set_text_gone="@{vm.bio}"
+                    android:textSize="@dimen/more_text_size"
+                    android:textColor="@color/text_color_black"
+                    tools:text="Ahmed Elzohry" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:set_text_gone="@{vm.email}"
+                    android:textSize="@dimen/more_text_size"
+                    android:textColor="@color/text_color_black"
+                    tools:text="Ahmed Elzohry" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:set_text_gone="@{vm.website}"
+                    android:textSize="@dimen/more_text_size"
+                    android:textColor="@color/text_color_black"
+                    tools:text="Ahmed Elzohry" />
+
+                <Button
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:onClick="@{(v)->vm.onEditProfileClickedListener(v)}"
+                    android:text="@string/edit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="12sp"
+                    app:cornerRadius="8dp"
+                    app:strokeColor="@color/hint_1"
+                    app:strokeWidth="1sp" />
+
+
+                <com.aelzohry.topsaleqatar.utils.CustomFrame
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:frame_layout="@{@id/recyclerView}"
+                    android:frame_state="@{vm.frameState}">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/view_holder_my_ad" />
+
+                </com.aelzohry.topsaleqatar.utils.CustomFrame>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

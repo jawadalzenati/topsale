@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.aelzohry.topsaleqatar.ui.new_ad.NewAdViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        tools:context=".ui.new_ad.NewAdFragment">
+
+        <include layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/default_half_margin"
+                android:layout_weight="1"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/defaultImageView"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:contentDescription="@string/default_image_description"
+                        android:src="@mipmap/logo"
+                        app:riv_corner_radius="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/imagesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/default_half_margin"
+                        android:paddingTop="@dimen/default_quarter_margin"
+                        android:paddingEnd="@dimen/default_half_margin"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/view_holder_new_image" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/default_half_margin"
+                        android:text="@string/photo_clear_note"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black" />
+
+
+                    <EditText
+                        android:id="@+id/titleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:hint="@string/title_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@={vm.etTitle}"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/ad_input_text_size" />
+
+
+                    <TextView
+                        android:id="@+id/categoryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/category"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.selectCatText}"
+                        android:textColor="@color/text_color_black" />
+
+                    <TextView
+                        android:id="@+id/subcategoryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/subcategory"
+                        android:is_visible="@{vm.subCatState}"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.selectSubCatText}"
+                        android:textColor="@color/text_color_black" />
+
+                    <TextView
+                        android:id="@+id/typeButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/type"
+                        android:is_visible="@{vm.typeState}"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.selectedTypeText}"
+                        android:textColor="@color/text_color_black" />
+
+                    <TextView
+                        android:id="@+id/propertiesButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/region_number_of_rooms_number_of_bathrooms"
+                        android:is_visible="@{vm.propertiesState}"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.selectPropertiesText}"
+                        android:textColor="@color/text_color_black" />
+
+
+                    <TextView
+                        android:id="@+id/carAttrButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/year_make_model"
+                        android:is_visible="@{vm.carCatState}"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.selectCarText}"
+                        android:textColor="@color/text_color_black" />
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:hint="@string/km_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:is_visible="@{vm.carCatState}"
+                        android:padding="8dp"
+                        android:text="@={vm.etKm}"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/ad_input_text_size" />
+
+                    <TextView
+                        android:id="@+id/locationButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center"
+                        android:hint="@string/select_ad_location"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@{vm.etLocation}"
+                        android:textColor="@color/text_color_black" />
+
+                    <EditText
+                        android:id="@+id/مخTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:hint="@string/price"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:text="@={vm.etPrice}"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/ad_input_text_size" />
+
+                    <EditText
+                        android:id="@+id/detailsTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/new_ad_bg"
+                        android:gravity="center|top"
+                        android:hint="@string/details_hint"
+                        android:inputType="text|textMultiLine"
+                        android:minHeight="40dp"
+                        android:minLines="5"
+                        android:padding="8dp"
+                        android:text="@={vm.etDesc}"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/ad_input_text_size" />
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <!-- App Info -->
+            <LinearLayout
+                android:id="@+id/bottomView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/default_margin">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/publishButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/publish"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_txt_color"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/btn_main_bg"
+                    app:cornerRadius="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_half_margin"
+                    android:text="@string/publish_notes"
+                    android:textAlignment="center"
+                    android:textColor="@color/hint_1"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

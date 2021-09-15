@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.aelzohry.topsaleqatar.ui.ad_details.AdDetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:context=".ui.ad_details.AdDetailsFragment">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pendingApprovalTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:padding="@dimen/default_half_margin"
+                        android:text="@string/pending_approval"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/currentImageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/ad_current_image_content_description"
+                                android:scaleType="centerCrop"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="w,1:1.2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:srcCompat="@tools:sample/avatars" />
+
+                            <ImageView
+                                android:id="@+id/fixedImageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:contentDescription="@string/starred_ad"
+                                android:is_visible="@{vm.fixed}"
+                                android:src="@drawable/ic_star_yellow_24dp"
+                                android:visibility="gone"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:visibility="visible" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/imagesRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/view_holder_ad_photo" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/dateTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:textColor="@color/hint_1"
+                            android:textSize="12sp"
+                            tools:text="Published At" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/viewsCountTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="2dp"
+                                android:setInt="@{vm.viewCount}"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="12sp"
+                                tools:text="0" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_views_white_24dp"
+                                app:tint="@color/text_color_black" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/likesCountTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/default_quarter_margin"
+                                android:setInt="@{vm.likeCount}"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color_black" />
+
+                            <ImageButton
+                                android:id="@+id/likeButton"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="@dimen/default_quarter_margin"
+                                android:background="@null"
+                                android:contentDescription="@string/like"
+                                android:onClick="@{()->vm.onToggleLikeClickedListener()}"
+                                android:src="@{vm.likeState ? @drawable/ic_thumb_down : @drawable/ic_thumb_up  }"
+                                android:tint="@color/text_color_black"
+                                tools:src="@drawable/ic_thumb_down" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/default_quarter_margin"
+                                android:setInt="@{vm.commentsCount}"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color_black" />
+
+                            <ImageButton
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="@dimen/default_quarter_margin"
+                                android:background="@null"
+                                android:contentDescription="@string/like"
+                                android:src="@drawable/ic_mode_comment_white_24dp"
+                                android:tint="@color/text_color_black" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="16sp"
+                        tools:text="Ad Title" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/priceTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp"
+                            tools:text="999" />
+
+                        <TextView
+                            android:id="@+id/currencyTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/currency"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/categoryView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/category"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/categoryTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="category_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subcategoryView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/subcategory"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/subcategoryTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="subcategory_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/typeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/type"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/typeTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="type_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/regionView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:textColor="@color/hint_1"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/region"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/regionTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="region_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/roomsView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:textColor="@color/hint_1"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/rooms_numbers"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/roomsTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="region_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bathRoomView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:textColor="@color/hint_1"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/bath_room_number"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/bathRoomTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="region_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/carMakeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/car_make"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/carMakeTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="make_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/carModelView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/car_model"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/carModelTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="model_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/carYearView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:textColor="@color/hint_1"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/car_year"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/carYearTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="make_value" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/carKmView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/car_km"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/carKmTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/hint_1"
+                                android:textSize="12sp"
+                                tools:text="km_value" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/userView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:onClick="@{(v)->vm.onUserProfileClickedListener(v)}"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/avatarImageView"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginEnd="@dimen/default_half_margin"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/avatar" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/usernameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="@dimen/more_text_size"
+                                android:textStyle="bold"
+                                tools:text="Ahmed Elzohry" />
+
+                            <TextView
+                                android:id="@+id/mobileTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="@dimen/more_text_size"
+                                android:textStyle="bold"
+                                tools:text="+201143011851" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/followButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:insetLeft="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetBottom="0dp"
+                                    android:onClick="@{()->vm.onToggleFollowClickedListener()}"
+                                    android:text="@{vm.followState ? @string/unfollow:@string/follow}"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/btn_second_txt_color"
+                                    android:textSize="12sp"
+                                    app:backgroundTint="@color/btn_second_bg"
+                                    app:icon="@{vm.followState ?@drawable/followed :@drawable/follow }"
+                                    app:iconSize="18sp"
+                                    app:iconTint="@color/black"
+                                    tools:text="@string/follow" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/blockButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginStart="8dp"
+                                    android:insetLeft="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetBottom="0dp"
+                                    android:onClick="@{(v)->vm.onBlocUserClickedListener(v)}"
+                                    android:text="@string/block"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/btn_second_txt_color"
+                                    android:textSize="12sp"
+                                    app:backgroundTint="@color/btn_second_bg"
+                                    app:icon="@drawable/ic_block"
+                                    app:iconTint="@color/black" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/description"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/detailsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/hint_1"
+                        android:textSize="14sp"
+                        tools:text="Ad description" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/shareButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            android:onClick="@{(v)->vm.onShareClickedListener(v)}"
+                            android:text="@string/share"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btn_second_txt_color"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/btn_second_bg"
+                            app:icon="@drawable/ic_share_ad"
+                            app:iconSize="16dp"
+                            app:iconTint="@color/black" />
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/reportButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            android:text="@string/report"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btn_second_txt_color"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/btn_second_bg"
+                            app:icon="@drawable/ic_report"
+                            app:iconSize="16dp"
+                            app:iconTint="@color/black" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/favoriteButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            android:onClick="@{()->vm.onToggleFavClickedListener()}"
+                            android:text="@string/favorites"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btn_second_txt_color"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/btn_second_bg"
+                            app:icon="@{vm.favState ? @drawable/ic_fill_heart : @drawable/ic_empty_heart}"
+                            app:iconSize="16dp"
+                            app:iconTint="@color/black" />
+
+                    </LinearLayout>
+
+<!--                    <fragment-->
+<!--                        android:id="@+id/view_map"-->
+<!--                        android:name="com.google.android.gms.maps.MapFragment"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="150dp"-->
+<!--                        android:layout_margin="8dp" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/comments"
+                            android:textColor="@color/text_color_black"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/commentEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/comment_edit_text_background"
+                            android:gravity="top|start"
+                            android:inputType="textMultiLine|text"
+                            android:minLines="4"
+                            android:padding="8dp"
+                            android:text="@={vm.etComment}"
+                            android:textColor="@color/text_color_white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/sendCommentButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end"
+                            android:layout_margin="8dp"
+                            android:background="@color/btn_main_bg"
+                            android:insetLeft="0dp"
+                            android:insetTop="0dp"
+                            android:insetRight="0dp"
+                            android:insetBottom="0dp"
+                            android:onClick="@{(v)->vm.onSendCommentClickedListener(v)}"
+                            android:text="@string/send"
+                            android:textAllCaps="false"
+                            android:textColor="@color/btn_txt_color"
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/btn_main_bg"
+                            app:cornerRadius="8dp"
+                            app:iconSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/commentsContainerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/commentsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/view_holder_comment" />
+
+                        <LinearLayout
+                            android:id="@+id/moreCommentsView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v)->vm.onMoreCommentsClickedListener(v)}"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:padding="@dimen/default_half_margin"
+                                android:text="@string/more_comments"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/relatedAdsView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:is_visible="@{vm.relatedAdsState}"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/default_quarter_margin"
+                                android:text="@string/related_ads"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="14sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/related_ads_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v)->vm.onRelateAdAllBtnClickedListener(v)}"
+                                android:padding="@dimen/default_quarter_margin"
+                                android:text="@string/show_all"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/relatedAdsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/default_quarter_margin"
+                            android:paddingEnd="0dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/view_holder_related_ad" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/userAdsView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:is_visible="@{vm.userAdsState}"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/default_quarter_margin"
+                                android:text="@string/user_ads"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="14sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/user_ads_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v)->vm.onUserProfileClickedListener(v)}"
+                                android:padding="@dimen/default_quarter_margin"
+                                android:text="@string/show_all"
+                                android:textColor="@color/text_color_black"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="vertical"
+                        android:padding="@dimen/default_quarter_margin">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/userAdsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/default_quarter_margin"
+                            android:paddingEnd="0dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/view_holder_related_ad" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:text="@string/safety_tips"
+                            android:textColor="@color/hint_1"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/default_half_margin"
+                            android:text="@string/safety_tips_body"
+                            android:textColor="@color/hint_1"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/hint" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/callButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{(v)->vm.onCallPhoneClickedListener(v)}"
+                        android:text="@string/call"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_txt_color"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/btn_main_bg"
+                        app:icon="@drawable/ic_call_white_24dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/btn_main_icon_color" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/messageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{(v)->vm.onChatClickedListener(v)}"
+                        android:text="@string/chat"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_txt_color"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/btn_main_bg"
+                        app:icon="@drawable/ic_message_white_24dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/btn_main_icon_color" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/whatsappButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{(v)->vm.onWhatsappClickedListener(v)}"
+                        android:text="@string/whatsapp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_txt_color"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/btn_main_bg"
+                        app:icon="@drawable/ic_whatsapp"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/btn_main_icon_color" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/emailButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{(v)->vm.onWhatsappClickedListener(v)}"
+                        android:text="@string/email"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_txt_color"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        app:backgroundTint="@color/btn_main_bg"
+                        app:icon="@drawable/ic_email_white_24dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/btn_main_icon_color" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

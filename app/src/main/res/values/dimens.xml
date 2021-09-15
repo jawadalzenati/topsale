@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_half_margin">8dp</dimen>
+    <dimen name="default_quarter_margin">4dp</dimen>
+    <dimen name="more_cell_padding">10dp</dimen>
+    <dimen name="separator_height">0.5dp</dimen>
+    <dimen name="default_radius">5dp</dimen>
+    <dimen name="more_text_size">12sp</dimen>
+    <dimen name="ad_input_text_size">14sp</dimen>
+    <dimen name="contact_text_size">14sp</dimen>
+    <dimen name="extra_bottom_space">80dp</dimen>
+    <!--
+    Because the window insets on round devices are larger than 15dp, this padding only applies
+    to square screens.
+    -->
+    <dimen name="box_inset_layout_padding">0dp</dimen>
+
+    <!--
+    This padding applies to both square and round screens. The total padding between the buttons
+    and the window insets is box_inset_layout_padding (above variable) on square screens and
+    inner_frame_layout_padding (below variable) on round screens.
+    -->
+    <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

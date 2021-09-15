@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#870D4F</color>
+    <color name="mainColor">@color/colorAccent</color>
+    <color name="color_verification">#FF0BA651</color>
+    <color name="color_tab_background">@color/colorPrimary</color>
+    <color name="color_tab_selected_background">@color/colorAccent</color>
+    <color name="separator_color">#ff000000</color>
+    <color name="details_separator_color">#ffffffff</color>
+    <color name="container_background">#40ffffff</color>
+    <color name="not_background">#40ffffff</color>
+    <color name="not_unseen_background">#ffffffff</color>
+    <color name="statusColor">#CFCDD4</color>
+    <color name="hint">#80DDDDDD</color>
+    <color name="hint_1">#92000000</color>
+    <color name="statusActive">#4CAF50</color>
+    <color name="statusNonActive">#FF0000</color>
+    <color name="black">#000</color>
+
+
+    <color name="hint_new_ad">#80DDDDDD</color>
+    <color name="new_ad_bg">@color/white</color>
+    <color name="message_tab_selected_bg">@color/white</color>
+    <color name="item_border">@color/hint</color>
+    <color name="item_bg">@color/white</color>
+    <color name="search_hint_color">#7C7C7C</color>
+    <color name="search_bg">#80DDDDDD</color>
+    <color name="text_color_black">#000</color>
+    <color name="text_color_white">#ffffffff</color>
+    <color name="header_bg">@color/white</color>
+    <color name="bg">#f8f8ff</color>
+    <color name="btn_bg">#B2AFBB</color>
+    <color name="icon_terms_tint">#654753</color>
+    <color name="btn_main_bg">@color/mainColor</color>
+    <color name="btn_main_icon_color">@color/white</color>
+    <color name="btn_second_bg">#B2AFBB</color>
+    <color name="btn_txt_color">@color/white</color>
+    <color name="btn_second_txt_color">#000</color>
+</resources>
